@@ -30,12 +30,13 @@ def add_random_commendation(schoolkid, subject_name):
             'Я вижу, как ты стараешься!', 'Ты растешь над собой!',
             'Ты многое сделал, я это вижу!',
             'Теперь у тебя точно все получится!',
-        ]
+    ]
     lessons = Lesson.objects.filter(
         subject__title=subject_name,
         group_letter=schoolkid.group_letter,
         year_of_study=schoolkid.year_of_study
     )
+    lessons = lessons.order_by('-date')
     teacher = lessons[0].teacher
     created = lessons[0].date
     subject = lessons[0].subject
